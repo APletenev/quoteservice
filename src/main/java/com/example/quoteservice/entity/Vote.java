@@ -26,7 +26,8 @@ public class Vote {
     @Max(1)
     @NotEmpty
     private byte opinion;
-    private Long voterId;
+    @Min(1)
+    private long voterId;
     @PastOrPresent
     @NotNull
     private LocalDateTime votingTime;

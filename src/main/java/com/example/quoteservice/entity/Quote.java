@@ -1,9 +1,7 @@
 package com.example.quoteservice.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +28,9 @@ public class Quote {
     @PastOrPresent
     @NotNull
     private LocalDate updateDate;
-    private Long authorId;
-    private Long score;
+    @Min(1)
+    private long authorId;
+    private long score;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "quote")
     @OrderBy("votingTime")
     private Set<Vote> votes;
