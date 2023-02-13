@@ -39,9 +39,16 @@ public class RestExceptionHandler {
         return new ValidationErrorResponse(violations);
     }
 
-    @ExceptionHandler({IllegalArgumentException.class, EmptyResultDataAccessException.class, NoSuchElementException.class})
+    @ExceptionHandler({EmptyResultDataAccessException.class, NoSuchElementException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> onResourceNotFound(RuntimeException e) {
         return Collections.singletonMap("Error", e.getMessage());
     }
+
+    @ExceptionHandler({IllegalArgumentException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> onIllegalArgumentException(RuntimeException e) {
+        return Collections.singletonMap("Error", e.getMessage());
+    }
+
 }
