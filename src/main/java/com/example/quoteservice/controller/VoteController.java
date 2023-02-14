@@ -20,6 +20,16 @@ public class VoteController {
     private QuoteService quoteService;
     private final UserClient userClient;
 
+    /**
+     * Voting on quotes
+     * @param voteDTO with properties:
+     *                quoteId - id of quote to vote,
+     *                opinion - vote value ( -1 - downvote, 1 - upvote),
+     *                VoterId - user id of voter from userservice
+     * @return Vote properties as JSON in success, error message otherwise
+     * Voter must be registered in userservice.
+     * User able to vote for same quote just once.
+     */
     @PostMapping
     @Transactional
     public Vote vote(@RequestBody @Valid VoteDTO voteDTO) {
