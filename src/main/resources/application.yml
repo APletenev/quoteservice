@@ -1,6 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost:1522/votes
+    url: jdbc:h2:tcp://quotes_db:1521/votes
+    username: sa
+    password:
     driverClassName: org.h2.Driver
   jpa:
     properties:

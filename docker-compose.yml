@@ -1,0 +1,22 @@
+version: "3"
+services:
+  users_db:
+    image: oscarfonts/h2:2.1.210
+    environment:
+      - H2_OPTIONS=-ifNotExists
+  quotes_db:
+    image: oscarfonts/h2:2.1.210
+    environment:
+      - H2_OPTIONS=-ifNotExists
+  userservice:
+    image: apletenev/voting:userservice
+    ports:
+      - "8080:8080"
+    depends_on:
+      - users_db
+  quoteservice:
+    image: apletenev/voting:quoteservice
+    ports:
+      - "8081:8081"
+    depends_on:
+      - quotes_db

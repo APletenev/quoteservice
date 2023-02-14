@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(value = "user-api", url = "http://localhost:8080/api/user")
+@FeignClient(value = "user-api", url = "http://userservice:8080/api/user")
 public interface UserClient {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     Optional getUserById(@PathVariable long id);
