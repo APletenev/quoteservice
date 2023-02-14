@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -50,4 +51,15 @@ public class QuoteServiceImpl implements QuoteService {
     public void deleteQuoteById(Long quoteId) {
         quoteRepository.deleteById(quoteId);
     }
+
+    @Override
+    public List<Quote> getTop10Quotes() {
+        return quoteRepository.findTop10ByOrderByScoreDesc();
+    }
+
+    @Override
+    public List<Quote> getWorse10Quotes() {
+        return quoteRepository.findFirst10ByOrderByScoreAsc();
+    }
+
 }
