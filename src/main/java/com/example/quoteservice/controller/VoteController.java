@@ -23,6 +23,7 @@ public class VoteController {
     @PostMapping
     @Transactional
     public Vote vote(@RequestBody @Valid VoteDTO voteDTO) {
+        if (voteDTO.getOpinion()==0) throw new IllegalArgumentException("Opinion must not be zero");
         // Check whether vote author exist in users service
         if (userClient.getUserById(voteDTO.getVoterId()).isEmpty()) throw new IllegalArgumentException("Invalid voter id");
         //Throw exception in case of invalid quoteId
